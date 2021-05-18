@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <my-profile />
+    <sidebar-item />
   </div>
 </template>
 
 <script>
 import MyProfile from "./components/MyProfile.vue";
+import SidebarItem from "./components/SidebarItem.vue";
 
 export default {
   name: "App",
   components: {
     MyProfile,
+    SidebarItem,
   },
 };
 </script>

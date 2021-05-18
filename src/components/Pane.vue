@@ -10,7 +10,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 .pane {
   /* width: calc(100% - 432px); */
   margin-left: 12px;

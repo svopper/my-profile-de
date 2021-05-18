@@ -18,7 +18,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 .sidebar {
   width: 384px;
   margin-right: 12px;
