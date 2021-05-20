@@ -52,21 +52,44 @@
           </div>
         </div>
       </div>
+      <div class="input-pane">
+        <sidebar-item
+          id="profile"
+          title="Mine oplsyninger"
+          @click="setActive('profile')"
+          :is-active="isActive('profile')"
+          iconName="user-alt-solid"
+        ></sidebar-item>
+        <sidebar-item
+          id="events"
+          title="Mine kurser og events"
+          @click="setActive('events')"
+          :is-active="isActive('events')"
+          iconName="calendar-alt-solid"
+        ></sidebar-item>
+        <sidebar-item
+          id="interests"
+          title="Mine interesser"
+          @click="setActive('interests')"
+          :is-active="isActive('interests')"
+          iconName="star-solid"
+        ></sidebar-item>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-// import SidebarItem from "./SidebarItem.vue";
+import SidebarItem from "./SidebarItem.vue";
 import SidebarItemAlt from "./SidebarItemAlt.vue";
 export default {
   components: {
-    // SidebarItem,
+    SidebarItem,
     SidebarItemAlt,
   },
   data() {
     return {
-      activeItem: "home",
+      activeItem: "profile",
     };
   },
   mounted() {
