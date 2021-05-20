@@ -6,13 +6,12 @@
       :href="`#${id}`"
       :title="title"
     >
-      <!-- <img
+      <img
         class="sidebar-img"
         :src="require(`../assets/${iconName}.svg`)"
         width="25"
         alt="icon"
-      /> -->
-      <i class="sidebar-img fas fa-chart-network"></i>
+      />
       <div class="sidebar-item-text">
         <span class="sidebar-item-link-text">{{ title }}</span>
         <span class="underline" :class="{ active: isActive }"></span>

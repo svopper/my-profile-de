@@ -1,10 +1,13 @@
 <template>
   <div>
     <h1>Velkommen til din profil hos Dansk Erhverv</h1>
+    <label for="compact">Kompakt menu?</label>
+    <input v-model="compact" type="checkbox" name="compact" id="compact" />
+    <label for="compact">(debug)</label>
     <br />
 
     <div class="box">
-      <div class="input-pane">
+      <nav class="input-pane pane" v-if="compact">
         <sidebar-item-alt
           id="profile"
           title="Mine oplsyninger"
@@ -26,54 +29,79 @@
           :is-active="isActive('interests')"
           iconName="star-solid"
         ></sidebar-item-alt>
-      </div>
+      </nav>
+      <nav class="input-pane pane" v-else>
+        <sidebar-item
+          id="profile"
+          title="Mine oplsyninger"
+          @click="setActive('profile')"
+          :is-active="isActive('profile')"
+          iconName="user-alt-solid"
+        ></sidebar-item>
+        <sidebar-item
+          id="events"
+          title="Mine kurser og events"
+          @click="setActive('events')"
+          :is-active="isActive('events')"
+          iconName="calendar-alt-solid"
+        ></sidebar-item>
+        <sidebar-item
+          id="interests"
+          title="Mine interesser"
+          @click="setActive('interests')"
+          :is-active="isActive('interests')"
+          iconName="star-solid"
+        ></sidebar-item>
+      </nav>
       <div class="result-pane">
         <div class="tab-content py-3" id="myTabContent">
           <div
-            class="tab-pane fade"
+            class="tab-pane-wrapper"
             :class="{ 'active show': isActive('profile') }"
             id="profile"
           >
-            <h2>Profile content</h2>
+            <div class="pane">
+              <h2>Personlige oplysninger</h2>
+              <dl>
+                <dt>Fornavn</dt>
+                <dd>Kasper</dd>
+
+                <dt>Efternavn</dt>
+                <dd>Olsen</dd>
+
+                <dt>E-mail</dt>
+                <dd>kols@danskerhverv.dk</dd>
+              </dl>
+            </div>
+
+            <div class="pane">
+              <h2>Virksomhedsoplysninger</h2>
+              <dl>
+                <dt>Virksomhed</dt>
+                <dd>Dansk Erhverv</dd>
+              </dl>
+            </div>
           </div>
           <div
-            class="tab-pane fade"
+            class="tab-pane-wrapper"
             :class="{ 'active show': isActive('events') }"
             id="events"
           >
-            <h2>Event content</h2>
+            <div class="pane">
+              <h2>Kommende events</h2>
+            </div>
+            <div class="pane">
+              <h2>Tidligere events</h2>
+            </div>
           </div>
           <div
-            class="tab-pane fade"
+            class="tab-pane-wrapper"
             :class="{ 'active show': isActive('interests') }"
             id="interests"
           >
             <h2>Interest content</h2>
           </div>
         </div>
-      </div>
-      <div class="input-pane">
-        <sidebar-item
-          id="profile"
-          title="Mine oplsyninger"
-          @click="setActive('profile')"
-          :is-active="isActive('profile')"
-          iconName="user-alt-solid"
-        ></sidebar-item>
-        <sidebar-item
-          id="events"
-          title="Mine kurser og events"
-          @click="setActive('events')"
-          :is-active="isActive('events')"
-          iconName="calendar-alt-solid"
-        ></sidebar-item>
-        <sidebar-item
-          id="interests"
-          title="Mine interesser"
-          @click="setActive('interests')"
-          :is-active="isActive('interests')"
-          iconName="star-solid"
-        ></sidebar-item>
       </div>
     </div>
   </div>
@@ -90,6 +118,7 @@ export default {
   data() {
     return {
       activeItem: "profile",
+      compact: false,
     };
   },
   mounted() {
@@ -114,12 +143,15 @@ export default {
   flex-direction: row;
 }
 
-.input-pane {
-  display: flex;
-  flex-direction: column;
+.pane {
   background: #e6ebef;
   border: 2px solid #d3d9e0;
   padding: 1.5rem;
+}
+
+.input-pane {
+  display: flex;
+  flex-direction: column;
   flex-basis: calc(100% / 3);
 }
 
@@ -136,9 +168,13 @@ export default {
   flex-flow: row wrap;
 }
 
-.tab-pane {
+.tab-pane-wrapper {
   display: none;
-  text-align: center;
+  margin-left: 7rem;
+}
+
+.tab-pane-wrapper > *:not(:last-child) {
+  margin-bottom: 5rem;
 }
 
 .active {
