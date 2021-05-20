@@ -1,0 +1,19 @@
+<sidebar-item
+    id="profile"
+    title="Mine oplsyninger"
+    :class="{ active: isActive('profile') }"
+    @click="setActive('profile')"
+    :is-active="isActive('profile')"
+></sidebar-item>
+<sidebar-item
+    id="events"
+    title="Mine kurser og events"
+    @click="setActive('events')"
+    :is-active="isActive('events')"
+></sidebar-item>
+<sidebar-item
+    id="interests"
+    title="Mine interesser"
+    @click="setActive('interests')"
+    :is-active="isActive('interests')"
+></sidebar-item>

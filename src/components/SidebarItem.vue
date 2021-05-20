@@ -1,7 +1,7 @@
 <template>
-  <div class="sidebar-item">
-    <a class="sidebar-item-link" href="#profile" title="Profil">
-      <article class="sidebar-item-content">
+  <div @click="$emit('click')" class="sidebar-item">
+    <a class="sidebar-item-link" :href="`#${id}`" :title="title">
+      <article :class="{ active: isActive }" class="sidebar-item-content">
         <div class="sidebar-item-image">
           <img
             class="sidebar-img"
@@ -10,7 +10,7 @@
             alt="icon"
           />
         </div>
-        <span class="sidebar-item-text">Profil</span>
+        <span class="sidebar-item-text">{{ title }}</span>
         <div class="_1BpLWC _3nyFHS">
           <svg width="30" height="10" viewBox="0 0 30 10" class="arrow-svg">
             <path stroke="none" d="M30 5l-8 5 1.898-5L22 0l8 5"></path>
@@ -19,12 +19,13 @@
         </div>
       </article>
     </a>
-    <a href="#yeet">teey</a>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["id", "title", "isActive"],
+};
 </script>
 
 <style scoped>
@@ -38,6 +39,16 @@ export default {};
 .sidebar-item-link {
   text-decoration: none;
 }
+
+.sidebar-item-link:active {
+  color: currentColor;
+}
+
+.active {
+  background: #1cd6ac !important;
+  color: #fff !important;
+}
+
 .sidebar-item-content {
   background: #f2f5f7;
   display: -webkit-box;
@@ -75,7 +86,7 @@ export default {};
 }
 
 .sidebar-item-text {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.25rem;
 }
 
