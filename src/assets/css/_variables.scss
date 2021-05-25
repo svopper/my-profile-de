@@ -1,0 +1,42 @@
+$mobile-max: 767px;
+$tablet-min: 768px;
+$tablet-max: 1024px;
+$desktop-min: 1025px;
+$large-desktop-min: 1440px;
+
+/* Sizes */
+$max-width: 1440px;
+$content-width: 1200px;
+$header-height: 145px;
+$input-height: 56px;
+
+/* Set the default font size */
+$root-font-size: 16px;
+
+/* Colors */
+$brand-color-white: #ffffff;
+$brand-color-light: #e6ebef;
+$brand-color-lighter: #f2f5f7;
+$brand-color-black: #000000;
+$brand-color-blue: #2a18cc;
+$brand-color-light-blue: #2637dd;
+$brand-color-green: #1cd6ac;
+$brand-color-grey: #a0a9ac;
+$brand-color-dark-grey: #7d8b90;
+$brand-color-orange: #ff431d;
+$brand-color-red-orange: #ff4935;
+$brand-color-error-red: #ff0000;
+$brand-color-root-background-color: var($brand-color-white);
+$brand-color-root-color: #313841;
+$brand-color-fair-pink: #ffedeb;
+$brand-color-darker-grey: #3a4750;
+$brand-color-geyser-grey: #d3d9e0;
+
+/* Brand colors */
+$brand-color-twitter: #5babf4;
+
+/* Set the default font to use on the site */
+$default-font: "GT America", system-ui;
+
+/* Shadows */
+$object-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.05);

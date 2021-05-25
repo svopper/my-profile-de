@@ -15,9 +15,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "./assets/css/_variables";
+@import "./assets/css/_mixins";
 #app {
   font-family: Arial, sans-serif;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

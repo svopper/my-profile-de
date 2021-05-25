@@ -34,12 +34,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/css/_mixins";
+
 .section__header {
   position: relative;
   margin: 0 auto 2rem;
   max-width: var(--content-width);
 
-  @media (--mq-mobile), print {
+  @include mobile {
     margin: 1rem auto;
   }
 }
@@ -54,7 +56,7 @@ export default {
   color: currentColor;
   transition: transform 0.5s, opacity 0.5s;
 
-  @media (--mq-mobile), print {
+  @include mobile {
     margin-left: 3rem;
   }
 }
@@ -70,7 +72,7 @@ export default {
   transition: transform 0.5s;
   transform-origin: left center;
 
-  @media (--mq-mobile), print {
+  @include mobile {
     width: 2.5rem;
     left: -3rem;
   }
@@ -83,7 +85,7 @@ export default {
   > .section__header__title {
     margin-left: 0;
 
-    @media (--mq-mobile), print {
+    @include mobile {
       &:before {
         width: 1.5rem;
         left: -2rem;
@@ -96,7 +98,7 @@ export default {
   > .section__header__title {
     margin-left: -2.5rem;
 
-    @media (--mq-mobile), print {
+    @include mobile {
       margin-left: 0;
 
       &:before {

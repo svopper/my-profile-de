@@ -1,15 +1,16 @@
 <template>
   <div>
     <h1>Velkommen til din profil hos Dansk Erhverv</h1>
-    <label for="compact">Kompakt menu?</label>
-    <input v-model="compact" type="checkbox" name="compact" id="compact" />
-    <label for="compact">(debug)</label>
     <br />
+    <div class="receiptText">
+      <checkmark-icon class="check" />
+      <span>Dine ændringer er gemt</span>
+    </div>
 
     <div class="box">
       <div class="sidebar">
         <div class="sidebar-content">
-          <nav class="input-pane pane" v-if="compact">
+          <nav class="input-pane pane">
             <sidebar-item-alt
               id="profile"
               title="Mine oplsyninger"
@@ -31,29 +32,13 @@
               :is-active="isActive('interests')"
               iconName="star-solid"
             ></sidebar-item-alt>
-          </nav>
-          <nav class="input-pane pane" v-else>
-            <sidebar-item
-              id="profile"
-              title="Mine oplsyninger"
-              @click="setActive('profile')"
-              :is-active="isActive('profile')"
-              iconName="user-alt-solid"
-            ></sidebar-item>
-            <sidebar-item
-              id="events"
-              title="Mine kurser og events"
-              @click="setActive('events')"
-              :is-active="isActive('events')"
-              iconName="calendar-alt-solid"
-            ></sidebar-item>
-            <sidebar-item
-              id="interests"
-              title="Mine interesser"
-              @click="setActive('interests')"
-              :is-active="isActive('interests')"
+            <sidebar-item-alt
+              id="newsletters"
+              title="Mine nyhedsbreve"
+              @click="setActive('newsletters')"
+              :is-active="isActive('newsletters')"
               iconName="star-solid"
-            ></sidebar-item>
+            ></sidebar-item-alt>
           </nav>
         </div>
       </div>
@@ -103,7 +88,19 @@
             :class="{ 'active show': isActive('interests') }"
             id="interests"
           >
-            <h2>Interest content</h2>
+            <div class="pane settings-pane">
+              <section-title title="Interesser" />
+            </div>
+          </div>
+
+          <div
+            class="tab-pane-wrapper"
+            :class="{ 'active show': isActive('newsletters') }"
+            id="newsletters"
+          >
+            <div class="pane settings-pane">
+              <section-title title="Tilmeldinger til nyhedsbreve" />
+            </div>
           </div>
         </div>
       </div>
@@ -112,11 +109,12 @@
 </template>
 
 <script>
+import CheckmarkIcon from "./CheckmarkIcon.vue";
 export default {
+  components: { CheckmarkIcon },
   data() {
     return {
       activeItem: "profile",
-      compact: true,
     };
   },
   mounted() {
@@ -135,10 +133,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/css/_variables.scss";
 .box {
   display: flex;
   flex-direction: row;
+}
+
+.receiptText {
+  display: flex;
+  align-items: center;
+  margin: 0 0 1rem 0;
+}
+
+.check {
+  fill: $brand-color-green;
+  margin-right: 1rem;
 }
 
 .pane {
