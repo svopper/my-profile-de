@@ -7,52 +7,56 @@
     <br />
 
     <div class="box">
-      <nav class="input-pane pane" v-if="compact">
-        <sidebar-item-alt
-          id="profile"
-          title="Mine oplsyninger"
-          @click="setActive('profile')"
-          :is-active="isActive('profile')"
-          iconName="user-alt-solid"
-        ></sidebar-item-alt>
-        <sidebar-item-alt
-          id="events"
-          title="Mine kurser og events"
-          @click="setActive('events')"
-          :is-active="isActive('events')"
-          iconName="calendar-alt-solid"
-        ></sidebar-item-alt>
-        <sidebar-item-alt
-          id="interests"
-          title="Mine interesser"
-          @click="setActive('interests')"
-          :is-active="isActive('interests')"
-          iconName="star-solid"
-        ></sidebar-item-alt>
-      </nav>
-      <nav class="input-pane pane" v-else>
-        <sidebar-item
-          id="profile"
-          title="Mine oplsyninger"
-          @click="setActive('profile')"
-          :is-active="isActive('profile')"
-          iconName="user-alt-solid"
-        ></sidebar-item>
-        <sidebar-item
-          id="events"
-          title="Mine kurser og events"
-          @click="setActive('events')"
-          :is-active="isActive('events')"
-          iconName="calendar-alt-solid"
-        ></sidebar-item>
-        <sidebar-item
-          id="interests"
-          title="Mine interesser"
-          @click="setActive('interests')"
-          :is-active="isActive('interests')"
-          iconName="star-solid"
-        ></sidebar-item>
-      </nav>
+      <div class="sidebar">
+        <div class="sidebar-content">
+          <nav class="input-pane pane" v-if="compact">
+            <sidebar-item-alt
+              id="profile"
+              title="Mine oplsyninger"
+              @click="setActive('profile')"
+              :is-active="isActive('profile')"
+              iconName="user-alt-solid"
+            ></sidebar-item-alt>
+            <sidebar-item-alt
+              id="events"
+              title="Mine kurser og events"
+              @click="setActive('events')"
+              :is-active="isActive('events')"
+              iconName="calendar-alt-solid"
+            ></sidebar-item-alt>
+            <sidebar-item-alt
+              id="interests"
+              title="Mine interesser"
+              @click="setActive('interests')"
+              :is-active="isActive('interests')"
+              iconName="star-solid"
+            ></sidebar-item-alt>
+          </nav>
+          <nav class="input-pane pane" v-else>
+            <sidebar-item
+              id="profile"
+              title="Mine oplsyninger"
+              @click="setActive('profile')"
+              :is-active="isActive('profile')"
+              iconName="user-alt-solid"
+            ></sidebar-item>
+            <sidebar-item
+              id="events"
+              title="Mine kurser og events"
+              @click="setActive('events')"
+              :is-active="isActive('events')"
+              iconName="calendar-alt-solid"
+            ></sidebar-item>
+            <sidebar-item
+              id="interests"
+              title="Mine interesser"
+              @click="setActive('interests')"
+              :is-active="isActive('interests')"
+              iconName="star-solid"
+            ></sidebar-item>
+          </nav>
+        </div>
+      </div>
       <div class="result-pane">
         <div class="tab-content py-3" id="myTabContent">
           <div
@@ -60,8 +64,8 @@
             :class="{ 'active show': isActive('profile') }"
             id="profile"
           >
-            <div class="pane">
-              <h2>Personlige oplysninger</h2>
+            <div class="pane settings-pane">
+              <section-title title="Personlige oplysninger" />
               <dl>
                 <dt>Fornavn</dt>
                 <dd>Kasper</dd>
@@ -74,8 +78,8 @@
               </dl>
             </div>
 
-            <div class="pane">
-              <h2>Virksomhedsoplysninger</h2>
+            <div class="pane settings-pane">
+              <section-title title="Virksomhedsoplysninger" />
               <dl>
                 <dt>Virksomhed</dt>
                 <dd>Dansk Erhverv</dd>
@@ -87,11 +91,11 @@
             :class="{ 'active show': isActive('events') }"
             id="events"
           >
-            <div class="pane">
-              <h2>Kommende events</h2>
+            <div class="pane settings-pane">
+              <section-title title="Kommende events" />
             </div>
-            <div class="pane">
-              <h2>Tidligere events</h2>
+            <div class="pane settings-pane">
+              <section-title title="Tidligere events" />
             </div>
           </div>
           <div
@@ -108,17 +112,11 @@
 </template>
 
 <script>
-import SidebarItem from "./SidebarItem.vue";
-import SidebarItemAlt from "./SidebarItemAlt.vue";
 export default {
-  components: {
-    SidebarItem,
-    SidebarItemAlt,
-  },
   data() {
     return {
       activeItem: "profile",
-      compact: false,
+      compact: true,
     };
   },
   mounted() {
@@ -146,13 +144,21 @@ export default {
 .pane {
   background: #e6ebef;
   border: 2px solid #d3d9e0;
-  padding: 1.5rem;
+}
+
+.settings-pane {
+  padding: 3rem 4rem;
+}
+
+.sidebar {
+  flex-basis: calc(100% / 3);
 }
 
 .input-pane {
   display: flex;
   flex-direction: column;
-  flex-basis: calc(100% / 3);
+  padding: 1.5rem;
+  min-height: auto;
 }
 
 .result-pane {
