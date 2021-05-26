@@ -2,10 +2,28 @@
   <div>
     <h1>Velkommen til din profil hos Dansk Erhverv</h1>
     <br />
-    <div class="receiptText">
-      <checkmark-icon class="check" />
-      <span>Dine ændringer er gemt</span>
-    </div>
+    <dropdown
+      class="menu-select"
+      :onSelect="handleOnSelect"
+      :options="[
+        {
+          label: 'Mine oplysninger',
+          href: '#profile',
+        },
+        {
+          label: 'Mine kurser og events',
+          href: '#events',
+        },
+        {
+          label: 'Mine interesser',
+          href: '#interests',
+        },
+        {
+          label: 'Mine nyhedsbreve',
+          href: '#newsletters',
+        },
+      ]"
+    />
 
     <div class="box">
       <div class="sidebar">
@@ -54,6 +72,10 @@
               <dl>
                 <dt>Fornavn</dt>
                 <dd>Kasper</dd>
+                <div class="receiptText">
+                  <checkmark-icon class="check" />
+                  <span>Dine ændringer er gemt</span>
+                </div>
 
                 <dt>Efternavn</dt>
                 <dd>Olsen</dd>
@@ -110,8 +132,9 @@
 
 <script>
 import CheckmarkIcon from "./CheckmarkIcon.vue";
+import Dropdown from "./Select/Dropdown";
 export default {
-  components: { CheckmarkIcon },
+  components: { CheckmarkIcon, Dropdown },
   data() {
     return {
       activeItem: "profile",
@@ -129,15 +152,18 @@ export default {
     setActive(menuItem) {
       this.activeItem = menuItem;
     },
+    handleOnSelect(event) {
+      this.setActive(event.href.substring(1));
+    },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../assets/css/_variables.scss";
 .box {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .receiptText {
@@ -157,7 +183,7 @@ export default {
 }
 
 .settings-pane {
-  padding: 3rem 4rem;
+  padding: 1.5rem;
 }
 
 .sidebar {
@@ -165,7 +191,7 @@ export default {
 }
 
 .input-pane {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 1.5rem;
   min-height: auto;
@@ -186,14 +212,43 @@ export default {
 
 .tab-pane-wrapper {
   display: none;
-  margin-left: 7rem;
 }
 
 .tab-pane-wrapper > *:not(:last-child) {
-  margin-bottom: 5rem;
+  margin-bottom: 1.5rem;
 }
 
 .active {
   display: block;
+}
+
+.menu-select {
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (min-width: 1025px) {
+  .menu-select {
+    display: none;
+  }
+
+  .input-pane {
+    display: flex;
+  }
+
+  .box {
+    flex-direction: row;
+  }
+
+  .tab-pane-wrapper {
+    margin-left: 7rem;
+  }
+
+  .tab-pane-wrapper > *:not(:last-child) {
+    margin-bottom: 5rem;
+  }
+
+  .settings-pane {
+    padding: 3rem 4rem;
+  }
 }
 </style>
