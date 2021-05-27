@@ -68,7 +68,8 @@
             id="profile"
           >
             <div class="pane settings-pane">
-              <section-title title="Personlige oplysninger" />
+              <section-title title="Dine personlige oplysninger" />
+              <my-info />
             </div>
 
             <div class="pane settings-pane">
@@ -127,8 +128,9 @@
 <script>
 import Dropdown from "./Select/Dropdown";
 import UserProfileEventCard from "./UserProfileEventCard.vue";
+import MyInfo from "./MyInfo";
 export default {
-  components: { Dropdown, UserProfileEventCard },
+  components: { Dropdown, UserProfileEventCard, MyInfo },
   data() {
     return {
       activeItem: "profile",
