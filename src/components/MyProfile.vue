@@ -69,20 +69,6 @@
           >
             <div class="pane settings-pane">
               <section-title title="Personlige oplysninger" />
-              <dl>
-                <dt>Fornavn</dt>
-                <dd>Kasper</dd>
-                <div class="receiptText">
-                  <checkmark-icon class="check" />
-                  <span>Dine ændringer er gemt</span>
-                </div>
-
-                <dt>Efternavn</dt>
-                <dd>Olsen</dd>
-
-                <dt>E-mail</dt>
-                <dd>kols@danskerhverv.dk</dd>
-              </dl>
             </div>
 
             <div class="pane settings-pane">
@@ -100,6 +86,14 @@
           >
             <div class="pane settings-pane">
               <section-title title="Kommende events" />
+              <user-profile-event-card
+                body="Kom på Dansk Erhvervs kursus og bliv opdateret på ansættelsesretten på en hurtig og effektiv måde."
+                title="Virksomhedsoverdragelse og medarbejdere"
+                date="1. juni 2021 10.00-11.25"
+                location="På månen"
+                :cta="{ href: '/#' }"
+                tag="Kursus"
+              />
             </div>
             <div class="pane settings-pane">
               <section-title title="Tidligere events" />
@@ -131,10 +125,10 @@
 </template>
 
 <script>
-import CheckmarkIcon from "./CheckmarkIcon.vue";
 import Dropdown from "./Select/Dropdown";
+import UserProfileEventCard from "./UserProfileEventCard.vue";
 export default {
-  components: { CheckmarkIcon, Dropdown },
+  components: { Dropdown, UserProfileEventCard },
   data() {
     return {
       activeItem: "profile",

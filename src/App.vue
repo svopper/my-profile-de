@@ -29,6 +29,13 @@ export default {
   margin: 0 auto;
 }
 
+h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+}
+
 .sidebar-img {
   color: #2a18cc;
 }

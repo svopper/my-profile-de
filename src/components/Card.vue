@@ -2,57 +2,43 @@
 
 <script>
 export default {
-  computed: {
-    hasPrices: function() {
-      return !!this.prices && prices.length > 0;
-    },
-  },
   props: {
     tag: {
-      type: String,
+      type: [String, Array],
     },
     title: {
       type: String,
-      required: true,
     },
-    body: {
-      type: String,
+    unbalancedTitle: {
+      type: Boolean,
     },
     theme: {
       type: String,
     },
-    date: {
-      type: String,
-      required: true,
-    },
-    location: {
-      type: String,
-      required: true,
-    },
-    prices: {
-      type: Array,
+    image: {
+      type: Object,
     },
     cta: {
       type: Object,
     },
-    status: {
-      type: [String, Array],
+    className: {
+      type: String,
     },
-    ctaAsButton: {
-      type: Boolean,
+    onClick: {
+      type: Function,
+    },
+    cardType: {
+      type: String,
+      validator: function(value) {
+        // The value must match one of these strings
+        return ["event", "fact", "profile", "tweet"].indexOf(value) !== -1;
+      },
     },
     noShadow: {
       type: Boolean,
     },
-    multiLine: {
+    clearTitleMargin: {
       type: Boolean,
-    },
-    canSignup: {
-      type: Boolean,
-      default: true,
-    },
-    unableToSignupText: {
-      type: String,
     },
     showFavoriteButton: {
       type: Boolean,
