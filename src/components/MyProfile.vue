@@ -67,6 +67,7 @@
             :class="{ 'active show': isActive('profile') }"
             id="profile"
           >
+            <h1>Mine oplysninger</h1>
             <div class="pane settings-pane">
               <section-title title="Dine personlige oplysninger" />
               <my-info />
@@ -85,16 +86,28 @@
             :class="{ 'active show': isActive('events') }"
             id="events"
           >
+            <h1>Mine kurser og events</h1>
             <div class="pane settings-pane">
               <section-title title="Kommende events" />
-              <user-profile-event-card
-                body="Kom på Dansk Erhvervs kursus og bliv opdateret på ansættelsesretten på en hurtig og effektiv måde."
-                title="Virksomhedsoverdragelse og medarbejdere"
-                date="1. juni 2021 10.00-11.25"
-                location="På månen"
-                :cta="{ href: '/#' }"
-                tag="Kursus"
-              />
+              <div class="event-wrapper">
+                <user-profile-event-card
+                  body="Kom på Dansk Erhvervs kursus og bliv opdateret på ansættelsesretten på en hurtig og effektiv måde."
+                  title="Virksomhedsoverdragelse og medarbejdere"
+                  date="1. juni 2021 10.00-11.25"
+                  location="På månen"
+                  :cta="{ href: '/#' }"
+                  tag="Kursus"
+                />
+                <user-profile-event-card
+                  body="Dette kursus klæder dig på til mange af de udfordringer, du vil opleve i din rolle som leder."
+                  title="Grundlæggende ledelse"
+                  date="9. september 2021 08.00-15.00"
+                  location="Kolding"
+                  :cta="{ href: '/#' }"
+                  tag="Kursus"
+                  theme="#4DC7FB"
+                />
+              </div>
             </div>
             <div class="pane settings-pane">
               <section-title title="Tidligere events" />
@@ -105,6 +118,7 @@
             :class="{ 'active show': isActive('interests') }"
             id="interests"
           >
+            <h1>Mine interesser</h1>
             <div class="pane settings-pane">
               <section-title title="Interesser" />
             </div>
@@ -115,6 +129,7 @@
             :class="{ 'active show': isActive('newsletters') }"
             id="newsletters"
           >
+            <h1>Mine nyhedsbreve</h1>
             <div class="pane settings-pane">
               <section-title title="Tilmeldinger til nyhedsbreve" />
             </div>
@@ -245,6 +260,15 @@ export default {
 
   .settings-pane {
     padding: 3rem 4rem;
+  }
+}
+
+.event-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    margin-bottom: 2.5rem;
   }
 }
 </style>
