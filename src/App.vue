@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <my-profile />
+    <my-profile> </my-profile>
   </div>
 </template>
 
 <script>
 import MyProfile from "./components/MyProfile.vue";
-
 export default {
   name: "App",
   components: {

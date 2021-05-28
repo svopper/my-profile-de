@@ -4,64 +4,9 @@
     <br />
 
     <div class="box">
-      <dropdown
-        class="menu-select"
-        :onSelect="handleOnSelect"
-        :options="[
-          {
-            label: 'Mine oplysninger',
-            href: '#profile',
-          },
-          {
-            label: 'Mine kurser og events',
-            href: '#events',
-          },
-          {
-            label: 'Mine nyhedsbreve',
-            href: '#newsletters',
-          },
-          {
-            label: 'Mine interesser',
-            href: '#interests',
-          },
-        ]"
-      />
-      <div class="sidebar">
-        <div class="sidebar-content">
-          <nav class="input-pane pane">
-            <sidebar-item-alt
-              id="profile"
-              title="Mine oplsyninger"
-              @click="setActive('profile')"
-              :is-active="isActive('profile')"
-              iconName="user-alt-solid"
-            ></sidebar-item-alt>
-            <sidebar-item-alt
-              id="events"
-              title="Mine kurser og events"
-              @click="setActive('events')"
-              :is-active="isActive('events')"
-              iconName="calendar-alt-solid"
-            ></sidebar-item-alt>
-            <sidebar-item-alt
-              id="newsletters"
-              title="Mine nyhedsbreve"
-              @click="setActive('newsletters')"
-              :is-active="isActive('newsletters')"
-              iconName="star-solid"
-            ></sidebar-item-alt>
-            <sidebar-item-alt
-              id="interests"
-              title="Mine interesser"
-              @click="setActive('interests')"
-              :is-active="isActive('interests')"
-              iconName="star-solid"
-            ></sidebar-item-alt>
-          </nav>
-        </div>
-      </div>
+      <sidebar @menuChange="setActive" :currentActive="activeItem" />
       <div class="result-pane">
-        <div class="tab-content py-3" id="myTabContent">
+        <div class="tab-content">
           <div
             class="tab-pane-wrapper"
             :class="{ 'active show': isActive('profile') }"
@@ -141,11 +86,11 @@
 </template>
 
 <script>
-import Dropdown from "./Select/Dropdown";
 import UserProfileEventCard from "./UserProfileEventCard.vue";
 import MyInfo from "./MyInfo";
+import Sidebar from "./Sidebar";
 export default {
-  components: { Dropdown, UserProfileEventCard, MyInfo },
+  components: { Sidebar, UserProfileEventCard, MyInfo },
   data() {
     return {
       activeItem: "profile",
@@ -201,19 +146,8 @@ export default {
   flex-basis: calc(100% / 3);
 }
 
-.input-pane {
-  display: none;
-  flex-direction: column;
-  padding: 1.5rem;
-  min-height: auto;
-}
-
 .result-pane {
   flex-basis: calc(100% / 1);
-}
-
-.input-pane > *:not(:last-child) {
-  margin-bottom: 1.5rem;
 }
 
 .tab {
@@ -233,19 +167,7 @@ export default {
   display: block;
 }
 
-.menu-select {
-  margin-bottom: 1.5rem;
-}
-
 @media screen and (min-width: 1025px) {
-  .menu-select {
-    display: none;
-  }
-
-  .input-pane {
-    display: flex;
-  }
-
   .box {
     flex-direction: row;
   }
