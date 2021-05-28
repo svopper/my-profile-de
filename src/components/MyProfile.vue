@@ -2,30 +2,30 @@
   <div>
     <h1>Velkommen til din profil hos Dansk Erhverv</h1>
     <br />
-    <dropdown
-      class="menu-select"
-      :onSelect="handleOnSelect"
-      :options="[
-        {
-          label: 'Mine oplysninger',
-          href: '#profile',
-        },
-        {
-          label: 'Mine kurser og events',
-          href: '#events',
-        },
-        {
-          label: 'Mine interesser',
-          href: '#interests',
-        },
-        {
-          label: 'Mine nyhedsbreve',
-          href: '#newsletters',
-        },
-      ]"
-    />
 
     <div class="box">
+      <dropdown
+        class="menu-select"
+        :onSelect="handleOnSelect"
+        :options="[
+          {
+            label: 'Mine oplysninger',
+            href: '#profile',
+          },
+          {
+            label: 'Mine kurser og events',
+            href: '#events',
+          },
+          {
+            label: 'Mine nyhedsbreve',
+            href: '#newsletters',
+          },
+          {
+            label: 'Mine interesser',
+            href: '#interests',
+          },
+        ]"
+      />
       <div class="sidebar">
         <div class="sidebar-content">
           <nav class="input-pane pane">
@@ -44,17 +44,17 @@
               iconName="calendar-alt-solid"
             ></sidebar-item-alt>
             <sidebar-item-alt
-              id="interests"
-              title="Mine interesser"
-              @click="setActive('interests')"
-              :is-active="isActive('interests')"
-              iconName="star-solid"
-            ></sidebar-item-alt>
-            <sidebar-item-alt
               id="newsletters"
               title="Mine nyhedsbreve"
               @click="setActive('newsletters')"
               :is-active="isActive('newsletters')"
+              iconName="star-solid"
+            ></sidebar-item-alt>
+            <sidebar-item-alt
+              id="interests"
+              title="Mine interesser"
+              @click="setActive('interests')"
+              :is-active="isActive('interests')"
               iconName="star-solid"
             ></sidebar-item-alt>
           </nav>
