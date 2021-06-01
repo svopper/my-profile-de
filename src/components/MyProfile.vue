@@ -1,84 +1,36 @@
 <template>
   <div>
-    <h1>Velkommen til din profil hos Dansk Erhverv</h1>
-    <br />
-
     <div class="box">
       <sidebar @menuChange="setActive" :currentActive="activeItem" />
       <div class="result-pane">
-        <div class="tab-content">
-          <div
-            class="tab-pane-wrapper"
-            :class="{ 'active show': isActive('profile') }"
-            id="profile"
-          >
-            <h1>Mine oplysninger</h1>
-            <div class="pane settings-pane">
-              <section-title title="Dine personlige oplysninger" />
-              <my-info />
-            </div>
+        <div
+          class="tab-pane-wrapper"
+          :class="{ 'active show': isActive('profile') }"
+          id="profile"
+        >
+          <my-info-wrapper />
+        </div>
+        <div
+          class="tab-pane-wrapper"
+          :class="{ 'active show': isActive('events') }"
+          id="events"
+        >
+          <my-events-wrapper :events="events" />
+        </div>
+        <div
+          class="tab-pane-wrapper"
+          :class="{ 'active show': isActive('interests') }"
+          id="interests"
+        >
+          <my-interests-wrapper />
+        </div>
 
-            <div class="pane settings-pane">
-              <section-title title="Virksomhedsoplysninger" />
-              <dl>
-                <dt>Virksomhed</dt>
-                <dd>Dansk Erhverv</dd>
-              </dl>
-            </div>
-          </div>
-          <div
-            class="tab-pane-wrapper"
-            :class="{ 'active show': isActive('events') }"
-            id="events"
-          >
-            <h1>Mine kurser og events</h1>
-            <div class="pane settings-pane">
-              <section-title title="Kommende events" />
-              <div class="event-wrapper">
-                <user-profile-event-card
-                  body="Kom på Dansk Erhvervs kursus og bliv opdateret på ansættelsesretten på en hurtig og effektiv måde."
-                  title="Virksomhedsoverdragelse og medarbejdere"
-                  date="1. juni 2021 10.00-11.25"
-                  location="På månen"
-                  :cta="{ href: '/#' }"
-                  tag="Kursus"
-                />
-                <user-profile-event-card
-                  body="Dette kursus klæder dig på til mange af de udfordringer, du vil opleve i din rolle som leder."
-                  title="Grundlæggende ledelse"
-                  date="9. september 2021 08.00-15.00"
-                  location="Kolding"
-                  :cta="{ href: '/#' }"
-                  tag="Kursus"
-                  theme="#4DC7FB"
-                />
-              </div>
-            </div>
-            <div class="pane settings-pane">
-              <section-title title="Tidligere events" />
-            </div>
-          </div>
-          <div
-            class="tab-pane-wrapper"
-            :class="{ 'active show': isActive('interests') }"
-            id="interests"
-          >
-            <h1>Mine interesser</h1>
-            <div class="pane settings-pane">
-              <section-title title="Interesser" />
-            </div>
-          </div>
-
-          <div
-            class="tab-pane-wrapper"
-            :class="{ 'active show': isActive('newsletters') }"
-            id="newsletters"
-          >
-            <h1>Mine nyhedsbreve</h1>
-            <div class="pane settings-pane">
-              <section-title title="Tilmeldinger til nyhedsbreve" />
-            </div>
-          </div>
+        <div
+          class="tab-pane-wrapper"
+          :class="{ 'active show': isActive('newsletters') }"
+          id="newsletters"
+        >
+          <my-newsletters-wrapper />
         </div>
       </div>
     </div>
@@ -86,11 +38,24 @@
 </template>
 
 <script>
-import UserProfileEventCard from "./UserProfileEventCard.vue";
-import MyInfo from "./MyInfo";
 import Sidebar from "./Sidebar";
+import MyInfoWrapper from "./Views/MyInfoWrapper.vue";
+import MyEventsWrapper from "./Views/MyEventsWrapper.vue";
+import MyInterestsWrapper from "./Views/MyInterestsWrapper.vue";
+import MyNewslettersWrapper from "./Views/MyNewslettersWrapper.vue";
 export default {
-  components: { Sidebar, UserProfileEventCard, MyInfo },
+  components: {
+    Sidebar,
+    MyInfoWrapper,
+    MyEventsWrapper,
+    MyInterestsWrapper,
+    MyNewslettersWrapper,
+  },
+  props: {
+    events: {
+      type: Array,
+    },
+  },
   data() {
     return {
       activeItem: "profile",
@@ -159,12 +124,12 @@ export default {
   display: none;
 }
 
-.tab-pane-wrapper > *:not(:last-child) {
+.settings-pane:not(:last-child) {
   margin-bottom: 1.5rem;
 }
 
 .active {
-  display: block;
+  display: block !important; // override default display: none
 }
 
 @media screen and (min-width: 1025px) {
@@ -176,21 +141,12 @@ export default {
     margin-left: 7rem;
   }
 
-  .tab-pane-wrapper > *:not(:last-child) {
+  .settings-pane:not(:last-child) {
     margin-bottom: 5rem;
   }
 
   .settings-pane {
     padding: 3rem 4rem;
-  }
-}
-
-.event-wrapper {
-  display: flex;
-  flex-direction: column;
-
-  > * {
-    margin-bottom: 2.5rem;
   }
 }
 </style>

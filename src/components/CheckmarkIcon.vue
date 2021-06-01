@@ -6,3 +6,14 @@
     />
   </svg>
 </template>
+
+<script>
+export default {
+  props: {
+    fillColor: {
+      type: String,
+      default: "#FF4935",
+    },
+  },
+};
+</script>

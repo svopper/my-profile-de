@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <my-profile> </my-profile>
+    <my-profile :events="events" />
   </div>
 </template>
 
@@ -8,6 +8,31 @@
 import MyProfile from "./components/MyProfile.vue";
 export default {
   name: "App",
+  data() {
+    return {
+      events: [
+        {
+          body:
+            "Kom på Dansk Erhvervs kursus og bliv opdateret på ansættelsesretten på en hurtig og effektiv måde.",
+          title: "Virksomhedsoverdragelse og medarbejdere",
+          date: "1. juni 2021 10.00-11.25",
+          location: "På månen",
+          cta: { href: "/#" },
+          tag: "Kursus",
+        },
+        {
+          body:
+            "Dette kursus klæder dig på til mange af de udfordringer, du vil opleve i din rolle som leder.",
+          title: "Virksomhedsoverdragelse og medarbejdere 2",
+          date: "1. juni 2021 10.00-11.25",
+          location: "På månen",
+          cta: { href: "/#" },
+          tag: "Kursus",
+          theme: "#4DC7FB",
+        },
+      ],
+    };
+  },
   components: {
     MyProfile,
   },

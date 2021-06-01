@@ -76,7 +76,7 @@ export default {
     },
     isActive: function(menuItem) {
       this.$emit("click", menuItem);
-      return this.activeItem === menuItem;
+      return this.currentActive === menuItem;
     },
   },
 };

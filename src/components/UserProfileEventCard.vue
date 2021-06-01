@@ -83,9 +83,10 @@ export default {
     height: 100%;
 
     .card-style_base {
-      -webkit-box-shadow: 0 -1px 1px 0 rgb(0 0 0 / 5%),
-        0 10px 20px 0 rgb(0 0 0 / 20%);
-      box-shadow: 0 -1px 1px 0 rgb(0 0 0 / 5%), 0 10px 20px 0 rgb(0 0 0 / 20%);
+      -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.05),
+        0 10px 20px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.05),
+        0 10px 20px 0 rgba(0, 0, 0, 0.2);
       background: #fff;
       color: #313841;
       overflow: hidden;
