@@ -23,6 +23,11 @@ import MyInfo from "../MyInfo.vue";
 import SectionTitle from "../SectionTitle.vue";
 export default {
   components: { CollapsableInfoBox, SectionTitle, MyInfo },
+  props: {
+    personalInfo: {
+      type: Object,
+    },
+  },
 };
 CollapsableInfoBox;
 </script>
