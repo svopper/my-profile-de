@@ -2,7 +2,7 @@
   <div>
     <dropdown
       class="menu-select"
-      :onSelect="handleOnSelect"
+      v-on:menu-change="$emit('menuChange', $event.href)"
       :options="[
         {
           label: 'Mine oplysninger',
@@ -22,40 +22,36 @@
         },
       ]"
     />
-    <div>
-      <div>
-        <nav class="input-pane pane">
-          <sidebar-item-alt
-            id="profile"
-            title="Mine oplsyninger"
-            @click="$emit('menuChange', 'profile')"
-            :is-active="isActive('profile')"
-            iconName="user-alt-solid"
-          ></sidebar-item-alt>
-          <sidebar-item-alt
-            id="events"
-            title="Mine kurser og events"
-            @click="$emit('menuChange', 'events')"
-            :is-active="isActive('events')"
-            iconName="calendar-alt-solid"
-          ></sidebar-item-alt>
-          <sidebar-item-alt
-            id="newsletters"
-            title="Mine nyhedsbreve"
-            @click="$emit('menuChange', 'newsletters')"
-            :is-active="isActive('newsletters')"
-            iconName="star-solid"
-          ></sidebar-item-alt>
-          <sidebar-item-alt
-            id="interests"
-            title="Mine interesser"
-            @click="$emit('menuChange', 'interests')"
-            :is-active="isActive('interests')"
-            iconName="star-solid"
-          ></sidebar-item-alt>
-        </nav>
-      </div>
-    </div>
+    <nav class="input-pane pane">
+      <sidebar-item-alt
+        id="profile"
+        title="Mine oplsyninger"
+        @click="$emit('menuChange', 'profile')"
+        :is-active="isActive('profile')"
+        iconName="user-alt-solid"
+      ></sidebar-item-alt>
+      <sidebar-item-alt
+        id="events"
+        title="Mine kurser og events"
+        @click="$emit('menuChange', 'events')"
+        :is-active="isActive('events')"
+        iconName="calendar-alt-solid"
+      ></sidebar-item-alt>
+      <sidebar-item-alt
+        id="newsletters"
+        title="Mine nyhedsbreve"
+        @click="$emit('menuChange', 'newsletters')"
+        :is-active="isActive('newsletters')"
+        iconName="star-solid"
+      ></sidebar-item-alt>
+      <sidebar-item-alt
+        id="interests"
+        title="Mine interesser"
+        @click="$emit('menuChange', 'interests')"
+        :is-active="isActive('interests')"
+        iconName="star-solid"
+      ></sidebar-item-alt>
+    </nav>
   </div>
 </template>
 
@@ -71,9 +67,6 @@ export default {
     },
   },
   methods: {
-    handleOnSelect: function(event) {
-      this.setActive(event.href.substring(1));
-    },
     isActive: function(menuItem) {
       this.$emit("click", menuItem);
       return this.currentActive === menuItem;

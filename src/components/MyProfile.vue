@@ -1,37 +1,35 @@
 <template>
-  <div>
-    <div class="box">
-      <sidebar @menuChange="setActive" :currentActive="activeItem" />
-      <div class="result-pane">
-        <div
-          class="tab-pane-wrapper"
-          :class="{ 'active show': isActive('profile') }"
-          id="profile"
-        >
-          <my-info-wrapper />
-        </div>
-        <div
-          class="tab-pane-wrapper"
-          :class="{ 'active show': isActive('events') }"
-          id="events"
-        >
-          <my-events-wrapper :events="events" />
-        </div>
-        <div
-          class="tab-pane-wrapper"
-          :class="{ 'active show': isActive('interests') }"
-          id="interests"
-        >
-          <my-interests-wrapper />
-        </div>
+  <div class="box">
+    <sidebar @menuChange="setActive" :currentActive="activeItem" />
+    <div class="result-pane">
+      <div
+        class="tab-pane-wrapper"
+        :class="{ 'active show': isActive('profile') }"
+        id="profile"
+      >
+        <my-info-wrapper />
+      </div>
+      <div
+        class="tab-pane-wrapper"
+        :class="{ 'active show': isActive('events') }"
+        id="events"
+      >
+        <my-events-wrapper :events="events" />
+      </div>
+      <div
+        class="tab-pane-wrapper"
+        :class="{ 'active show': isActive('interests') }"
+        id="interests"
+      >
+        <my-interests-wrapper />
+      </div>
 
-        <div
-          class="tab-pane-wrapper"
-          :class="{ 'active show': isActive('newsletters') }"
-          id="newsletters"
-        >
-          <my-newsletters-wrapper />
-        </div>
+      <div
+        class="tab-pane-wrapper"
+        :class="{ 'active show': isActive('newsletters') }"
+        id="newsletters"
+      >
+        <my-newsletters-wrapper />
       </div>
     </div>
   </div>
@@ -71,7 +69,11 @@ export default {
       return this.activeItem === menuItem;
     },
     setActive(menuItem) {
-      this.activeItem = menuItem;
+      if (menuItem.startsWith("#")) {
+        this.activeItem = menuItem.substring(1);
+      } else {
+        this.activeItem = menuItem;
+      }
     },
     handleOnSelect(event) {
       this.setActive(event.href.substring(1));

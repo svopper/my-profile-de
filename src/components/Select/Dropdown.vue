@@ -4,7 +4,7 @@
     :searchable="false"
     :clearable="clearable"
     :options="options"
-    v-on:option:selected="onSelect"
+    v-on:option:selected="$emit('menuChange', $event)"
   />
 </template>
 
@@ -27,12 +27,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    onSelect: {
-      type: Function,
-      default: function () {
-        return null;
-      },
-    },
     selected: {
       type: Object,
     },
@@ -44,7 +38,6 @@ export default {
 .v-select {
   position: relative;
   font-family: inherit;
-  /* padding: 0 10px; */
 }
 
 .v-select,
